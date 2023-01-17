@@ -9,6 +9,6 @@ data class WeatherData(
     val windSpeed: Double,
     val humidity: Double,
     val weatherType: WeatherType,
-    val rain: Double,
-    val city: String
+    val rain: Double
+//    val city: String
 )
