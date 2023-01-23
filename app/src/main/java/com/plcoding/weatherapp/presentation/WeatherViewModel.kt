@@ -12,6 +12,7 @@ import com.plcoding.weatherapp.domain.location.LocationTracker
 import com.plcoding.weatherapp.domain.repository.WeatherRepository
 import com.plcoding.weatherapp.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -32,6 +33,7 @@ class WeatherViewModel @Inject constructor(
                 isLoading = true,
                 error = null
             )
+            delay(1000)
             locationTracker.getCurrentLocation()?.let { location ->
                 when (
                     val result =
@@ -56,6 +58,7 @@ class WeatherViewModel @Inject constructor(
                 val address = geoCoder.getFromLocation(location.latitude, location.longitude, 1)
                 state.weatherInfo?.currentWeatherData?.city = address[0].locality
                 Log.d("CityName", "${address[0].locality},${state.weatherInfo}")
+                Log.d("WeatherViewModelthread", Thread.currentThread().name)
             } ?: kotlin.run {
                 state = state.copy(
                     isLoading = false,
@@ -63,5 +66,6 @@ class WeatherViewModel @Inject constructor(
                 )
             }
         }
+        Log.d("WeatherViewModelthread2", Thread.currentThread().name)
     }
 }
