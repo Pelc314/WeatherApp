@@ -15,6 +15,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.plcoding.weatherapp.R
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
@@ -43,9 +44,7 @@ fun WeatherCard(
 
                 ) {
                     Text(
-                        text = "${
-                        state.city
-                        }",
+                        text = "${data.city}",
                         color = Color.White
                     )
                     Text(
